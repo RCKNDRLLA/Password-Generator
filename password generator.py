@@ -3,7 +3,7 @@ from tkinter import *
 import pyperclip
 
 symbols = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&*+-=?@^_'
-lenth = 8
+length = 8
 
 # create a window
 tk = Tk()
@@ -26,19 +26,19 @@ canvas.create_rectangle(10, 10, 20, 20, outline='black', fill=tk.cget("bg"))  # 
 
 
 # создаем функцию выделения значка копирования
-def on_enter(event):
+def on_enter():
     canvas.config(bg='lightblue')
     canvas.create_rectangle(10, 10, 20, 20, outline='black', fill='lightblue')
 
 
-def on_leave(event):
+def on_leave():
     canvas.config(bg=tk.cget("bg"))
     canvas.create_rectangle(10, 10, 20, 20, outline='black', fill=tk.cget('bg'))
 
 
 # define a password generation function
 def generate_password():
-    password = random.sample(symbols, lenth)
+    password = random.sample(symbols, length)
     return ''.join(password)
 
 
@@ -84,15 +84,15 @@ def change_password():
 
 # создаем функции уменьшения и увеличения длинны пароля при нажатии кнопок
 def reducing_length():
-    global lenth
-    lenth -= 1
+    global length
+    length -= 1
     text_var.set(generate_password())
     change_quantity()
 
 
 def increasing_length():
-    global lenth
-    lenth += 1
+    global length
+    length += 1
     text_var.set(generate_password())
     change_quantity()
 
@@ -114,7 +114,7 @@ quantity_label.grid(row=2, column=1, columnspan=2, pady=0, padx=0)
 
 # функция изменения длинны пароля
 def change_quantity():
-    quantity.set(lenth)
+    quantity.set(length)
 
 
 def checkbox_status():
@@ -129,11 +129,11 @@ def checkbox_status():
         symbols = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 
-# Создаем переменные для отслеживания состояний чекбоксов
+# Создаем переменные для отслеживания состояний чек-боксов
 var1 = IntVar(value=1)
 var2 = IntVar(value=1)
 
-# Создаем Checkbuttons
+# Создаем Check buttons
 checkbox1 = Checkbutton(tk, text='use digits', variable=var1, command=checkbox_status)
 checkbox1.grid(row=3, column=1, columnspan=2, pady=0, padx=150)
 checkbox2 = Checkbutton(tk, text='use symbols', variable=var2, command=checkbox_status)
